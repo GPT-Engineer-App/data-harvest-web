@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, VStack, Input, Button, FormControl, FormLabel, Select, Textarea, HStack, Text, IconButton, Box } from "@chakra-ui/react";
+import { Container, VStack, Input, Button, FormControl, FormLabel, Select, Textarea, HStack, IconButton } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 
 const Index = () => {
@@ -8,6 +9,8 @@ const Index = () => {
   const [depth, setDepth] = useState(1);
   const [breadth, setBreadth] = useState(10);
   const [frequency, setFrequency] = useState("daily");
+
+  const navigate = useNavigate();
 
   const handleAddPrompt = () => {
     setPrompts([...prompts, { id: prompts.length + 1, text: "" }]);
@@ -20,6 +23,7 @@ const Index = () => {
   const handleStartCrawl = () => {
     // Implement start crawl logic
     console.log("Start crawling:", { domain, prompts, depth, breadth, frequency });
+    navigate("/results");
   };
 
   const handlePauseCrawl = () => {
