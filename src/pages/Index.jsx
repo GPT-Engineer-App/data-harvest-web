@@ -5,6 +5,8 @@ import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 
 const Index = () => {
   const [domain, setDomain] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [prompts, setPrompts] = useState([{ id: 1, text: "" }]);
   const [depth, setDepth] = useState(1);
   const [breadth, setBreadth] = useState(10);
@@ -22,7 +24,7 @@ const Index = () => {
 
   const handleStartCrawl = () => {
     // Implement start crawl logic
-    console.log("Start crawling:", { domain, prompts, depth, breadth, frequency });
+    console.log("Start crawling:", { domain, prompts, depth, breadth, frequency, email, name });
     navigate("/results");
   };
 
@@ -39,6 +41,16 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.md" py={10}>
       <VStack spacing={4} width="100%">
+        <FormControl id="name">
+          <FormLabel>Name</FormLabel>
+          <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g., John Doe" />
+        </FormControl>
+
+        <FormControl id="email">
+          <FormLabel>Email</FormLabel>
+          <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="e.g., john@example.com" />
+        </FormControl>
+
         <FormControl id="domain">
           <FormLabel>Target Domain</FormLabel>
           <Input value={domain} onChange={(e) => setDomain(e.target.value)} placeholder="e.g., example.com" />
